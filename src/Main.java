@@ -1,35 +1,39 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		//		IntStream
-		//				.range(1, 10)
-		//				.forEach(System.out::print);
-		//
-		//		System.out.println();
+		List<String> G8 = new ArrayList<String>();
+		G8.add("Japan");
+		G8.add("USA");
+		G8.add("Canada");
+		G8.add("United Kingdom");
+		G8.add("France");
+		G8.add("Germany");
+		G8.add("Italy");
+		G8.add("Russia");
 
-		List<String> names = List.of("yamada", "tanaka", "yasuda", "suzuki", "iida");
+		//G8の国々からアジアにある国のみフィルターをかけて抽出
+		List<String> expelled = G8.stream()
+				.filter(x -> x.contains("Russia"))
+				.toList();
 
-		List<String> sortedResult = names.stream().sorted().toList();
-		long count = names.stream().filter(name -> name.startsWith("y")).count();
-		boolean hasYamada = names.stream().anyMatch(name -> name.equals("yamada"));
+		System.out.println(expelled + "はG8から追放されました。");
+		G8.removeAll(expelled);
 
-		System.out.println(sortedResult);
-		System.out.println(count);
-		System.out.println(hasYamada);
+		List<String> G7 = new ArrayList<String>();
+		G7.addAll(G8);
 
-		names.stream().map(name -> name.toUpperCase()).forEach(name -> System.out.println(name));
+		System.out.println("G7の加盟国は下記となります↓");
+		G7.forEach(System.out::println);
 
-		Arrays.stream(new int[] { 2, 4 })
-				.map(x -> x * x)
-				.average()
-				.ifPresent(System.out::println);
-
-		System.out.println();
-
+		System.out.println("G7の加盟国を大文字に変えます↓");
+		G7.stream().map(countries -> countries.toUpperCase())
+				.forEach(countries -> System.out.println(countries));
 	}
+
+	//特定の要素を
 
 }
