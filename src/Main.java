@@ -34,6 +34,4 @@ public class Main {
 				.forEach(countries -> System.out.println(countries));
 	}
 
-	//特定の要素を
-
 }
